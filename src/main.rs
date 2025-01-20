@@ -88,28 +88,17 @@ impl Model {
         model.camera.update_pos(&app.mouse);
         model.update_scene();
         
-        if model.mouse_light && !model.mouse_light_active {
-            let light = Light::new(Vec2::ZERO, srgb(1.0, 1.0, 1.0), 1.0);
-            model.lights.push(light);
-            model.mouse_light_active = true;
-        } else if !model.mouse_light && model.mouse_light_active {
-            model.lights.pop();
-            model.mouse_light_active = false;
-        }
-        if model.mouse_light_active {
-            let mouse_pos = nannou::geom::vec2(app.mouse.x, app.mouse.y);
-            let mouse_pos_base_coords = mouse_pos / model.camera.zoom + model.camera.position;
-            model.lights.last_mut().unwrap().position = mouse_pos_base_coords;
-        }
-
+        
         for _ in 0..model.simulation_speed {
             for vehicle in &mut model.vehicles {
                 vehicle.update(&model.lights, update.since_last.as_secs_f32());
             }
-    
+            
             Model::replace_lights_on_collision(model);
         }
-
+        
+        model.handle_mouse_light(app);
+        
         if model.follow_vehicle {
             let vehicle = &model.vehicles[model.follow_vehicle_indx];
             model.camera.position = vehicle.position;
@@ -189,6 +178,7 @@ impl Model {
                 self.vehicles = scene.vehicles;
                 self.lights = scene.lights;
                 self.camera = scene.camera;
+                self.mouse_light_active = false;
             }
             ui.add(Checkbox::new(&mut self.show_controls, "Show Controls"));
             ui.add(Checkbox::new(&mut self.follow_vehicle, "Follow Vehicle"));
@@ -220,7 +210,7 @@ impl Model {
                 model.vehicles.iter().any(|vehicle| {
                     let distance = light.position.distance_squared(vehicle.position);
                     distance < 20000.0
-                })
+                }) 
             })
             .for_each(|light| {
                 light.position = nannou::geom::vec2(
@@ -229,7 +219,23 @@ impl Model {
                 );
             })
     }
+    fn handle_mouse_light(&mut self, app: &App) {
+        if self.mouse_light && !self.mouse_light_active {
+            let light = Light::new(Vec2::ZERO, srgb(1.0, 1.0, 1.0), 1.0);
+            self.lights.push(light);
+            self.mouse_light_active = true;
+        } else if !self.mouse_light && self.mouse_light_active {
+            self.lights.pop();
+            self.mouse_light_active = false;
+        }
+        if self.mouse_light_active {
+            let mouse_pos = nannou::geom::vec2(app.mouse.x, app.mouse.y);
+            let mouse_pos_base_coords = mouse_pos / self.camera.zoom + self.camera.position;
+            self.lights.last_mut().unwrap().position = mouse_pos_base_coords;
+        }
+    }
 }
+
 
 
 fn raw_window_event(_app: &App, model: &mut Model, event: &nannou::winit::event::WindowEvent) {
