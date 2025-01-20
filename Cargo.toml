@@ -1,0 +1,12 @@
+[package]
+name = "nannou_braitenberg"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+nannou = "0.19.0"
+rand = "0.8.5"
+rayon = "1.5.1"
+nannou_egui = "0.19.0"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.136"

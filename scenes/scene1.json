@@ -1,0 +1,34 @@
+{
+  "vehicles": [
+    {
+      "vehicle_type": "ThreeA",
+      "position": [
+        0.0,
+        -1000.0
+      ],
+      "orientation": 0.1,
+      "velocity": 0.0
+    }
+  ],
+  "lights": [
+    {
+      "position": [
+        0.0,
+        0.0
+      ],
+      "color": {
+        "red": 1.0,
+        "green": 1.0,
+        "blue": 1.0
+      },
+      "intensity": 0.7
+    }
+  ],
+  "camera": {
+    "position": [
+      0.0,
+      -400.0
+    ],
+    "zoom": 0.3
+  }
+}
