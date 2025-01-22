@@ -1,6 +1,4 @@
-use std::f32::consts::{FRAC_PI_2, PI};
-
-use nannou::{color::{self, srgb, Srgb}, draw::{self}, glam::Vec2, math::{Vec2Angle, Vec2Rotate}, prelude::Pow, text::layout::DEFAULT_Y_ALIGN};
+use nannou::{color::{srgb, Srgb}, draw::{self}, glam::Vec2, math::Vec2Rotate};
 use serde::{Deserialize, Serialize};
 
 use crate::{camera::Camera, light::Light};
@@ -8,6 +6,8 @@ use crate::{camera::Camera, light::Light};
 const VEHICLE_WIDTH: f32 = 60.0;
 const VEHICLE_LENGTH: f32 = 100.0;
 const SENSOR_SIZE: f32 = 10.0;
+const LEFT_FRONT: (f32, f32) = (-VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
+const RIGHT_FRONT: (f32, f32) = (VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
 
 #[derive(Serialize, Deserialize)]
 pub enum VehicleType {
@@ -35,6 +35,7 @@ impl Vehicle {
         }
     }
 
+    // update function for the vehicle
     pub fn update(&mut self, lights: &[Light], delta: f32) {
         let left_sensor_value = self.read_sensor(Vec2::from(LEFT_FRONT), lights);
         let right_sensor_value = self.read_sensor(Vec2::from(RIGHT_FRONT), lights);
@@ -62,6 +63,7 @@ impl Vehicle {
         }
     }
 
+    // draw function for the vehicle
     pub fn draw(&self, draw: &nannou::draw::Draw, camera: &Camera, lights: &[Light]) {
         let color = match self.vehicle_type {
             VehicleType::TwoA => srgb(1.0, 1.0, 0.0),
@@ -69,7 +71,6 @@ impl Vehicle {
             VehicleType::ThreeA => srgb(0.0, 0.0, 1.0),
             VehicleType::ThreeB => srgb(1.0, 0.0, 1.0),
         };
-
         self.draw_rect(color, Vec2::new(0.0, 0.0), draw, camera, Vec2::new(VEHICLE_WIDTH, VEHICLE_LENGTH));
 
         match self.vehicle_type {
@@ -80,11 +81,13 @@ impl Vehicle {
         }
     }
 
+    // converts local coordinates of the vehicle to global coordinates
     pub fn to_global_cords(&self, offset: Vec2, camera: &Camera) -> Vec2 {
         let offset = offset.rotate(self.orientation);
         (self.position + offset - camera.position) * camera.zoom
     }
 
+    // === drawing functions to draw on the vehicle ===
     pub fn draw_rect(&self, color: Srgb, offset: Vec2, draw: &nannou::draw::Draw, camera: &Camera, dimensions: Vec2) -> Vec2 {
         let pos = self.to_global_cords(offset, camera);
 
@@ -114,6 +117,7 @@ impl Vehicle {
             .rotate(self.orientation);
     }
 
+    // returns the sensor value at a given position
     pub fn read_sensor(&self, pos: Vec2, lights: &[Light]) -> f32 {
         let pos = pos.rotate(self.orientation) + self.position;
         
@@ -126,6 +130,7 @@ impl Vehicle {
         (val * 20000.0).min(1.0)
     }
 
+    // general update function for vehicles with two sensors
     fn two_sensor_vehicle(&mut self, delta: f32, left_sensor_value: f32, right_sensor_value: f32) {        
         let new_vel = (left_sensor_value + right_sensor_value) * 1600.0;
         let new_vel_min = new_vel.min(600.0);
@@ -140,6 +145,7 @@ impl Vehicle {
         self.position += Vec2::new(-self.orientation.sin(), self.orientation.cos()) * self.velocity * delta;
     }
 
+    // calculates the rotation of the vehicle based on the sensor values
     fn calc_rotation(&self,left_sensor_value: f32, right_sensor_value: f32, factor: f32) -> f32 {
         if left_sensor_value < right_sensor_value {
             return -self.calc_rotation(right_sensor_value, left_sensor_value, factor);
@@ -157,8 +163,7 @@ impl Vehicle {
 
 }
 
-const LEFT_FRONT: (f32, f32) = (-VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
-const RIGHT_FRONT: (f32, f32) = (VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
+// === Draw functions for different vehicle types ===
 struct VehicleA; 
 impl VehicleA {
     pub fn draw(vehicle: &Vehicle, draw: &draw::Draw, camera: &Camera, lights: &[Light], color: Srgb) {

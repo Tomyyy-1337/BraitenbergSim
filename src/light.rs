@@ -20,10 +20,9 @@ impl Light {
     }
 
     pub fn draw(&self, draw: &nannou::draw::Draw, camera: &Camera) {
-        self.draw_circle(draw, camera, 100.0, (0.0, 0.8));
-        self.draw_circle(draw, camera, 400.0, (0.0, 0.1));
-        self.draw_circle(draw, camera, 800.0, (0.0, 0.05));
-
+        self.draw_circle(draw, camera, 100.0, (0.0, 0.7));
+        self.draw_circle(draw, camera, 500.0, (0.0, 0.1));
+        self.draw_circle(draw, camera, 1200.0, (0.0, 0.05));
     }
         
     fn draw_circle(&self, draw: &Draw, camera: &Camera, radius: f32, color_range: (f32, f32)) {
