@@ -61,11 +61,7 @@ impl Model {
     }
 
     fn update(app: &App, model: &mut Self, update: Update) {
-        if model.follow_vehicle {
-            model.camera.position = model.vehicles[model.follow_vehicle_indx].position;
-        } else {
-            model.camera.update_pos(&app.mouse);
-        }
+        model.camera.update_pos(&app.mouse);
         model.update_scene();
         model.update_mouse_light(app);
         model.update_gui(update);
@@ -82,7 +78,9 @@ impl Model {
             Model::replace_lights_on_collision(model);
         }
         
-        
+        if model.follow_vehicle {
+            model.camera.position = model.vehicles[model.follow_vehicle_indx].position;
+        }
     }
 
     fn view(app: &App, model: &Self, frame: Frame) {
