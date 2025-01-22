@@ -5,4 +5,4 @@ Simulation for Braitenberg Vehicles 2a, 2b, 3a, 3b in Rust using [Nannou](https:
 ```
 cargo run --release
 ```
-[](https://imgur.com/a/yTxCC0K)
+![Imgur](https://i.imgur.com/Up4AG2u.png)
