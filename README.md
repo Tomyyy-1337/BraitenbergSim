@@ -5,3 +5,5 @@ Simulation for Braitenberg Vehicles 2a, 2b, 3a, 3b in Rust using [Nannou](https:
 ```
 cargo run --release
 ```
+
+[Example](https://imgur.com/a/DfAO6aX)
