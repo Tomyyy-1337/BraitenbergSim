@@ -1,7 +1,7 @@
 {
   "vehicles": [
     {
-      "vehicle_type": "ThreeB",
+      "vehicle_type": "TwoB",
       "position": [
         0.0,
         -1000.0

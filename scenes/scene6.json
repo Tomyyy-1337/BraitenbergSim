@@ -1,1 +1,103 @@
-{"vehicles":[{"vehicle_type":"TwoA","position":[-600.0,0.0],"orientation":0.0,"velocity":0.0},{"vehicle_type":"TwoB","position":[-200.0,0.0],"orientation":0.0,"velocity":0.0},{"vehicle_type":"ThreeA","position":[200.0,0.0],"orientation":0.0,"velocity":0.0},{"vehicle_type":"ThreeB","position":[600.0,0.0],"orientation":0.0,"velocity":0.0}],"lights":[{"position":[-9180.556,-7678.1226],"color":{"red":0.42097616,"green":0.488037,"blue":0.20540798},"intensity":0.7},{"position":[9380.973,3099.0605],"color":{"red":0.6762924,"green":0.5344634,"blue":0.32928562},"intensity":0.7},{"position":[-4222.734,1066.0723],"color":{"red":0.7677233,"green":0.37383306,"blue":0.7163662},"intensity":0.7},{"position":[8425.227,733.459],"color":{"red":0.10980582,"green":0.22180045,"blue":0.4057213},"intensity":0.7},{"position":[-3913.4526,6274.126],"color":{"red":0.47179544,"green":0.43670774,"blue":0.24948537},"intensity":0.7},{"position":[3738.9307,6957.5],"color":{"red":0.56299007,"green":0.14901793,"blue":0.8057817},"intensity":0.7},{"position":[5895.038,5510.826],"color":{"red":0.0630908,"green":0.10164225,"blue":0.11539698},"intensity":0.7},{"position":[7854.0254,-1743.6143],"color":{"red":0.8944552,"green":0.9229207,"blue":0.0896467},"intensity":0.7},{"position":[4314.9756,2740.212],"color":{"red":0.71474993,"green":0.23273468,"blue":0.8452424},"intensity":0.7},{"position":[3040.7764,7099.2285],"color":{"red":0.40391862,"green":0.37112677,"blue":0.67335033},"intensity":0.7},{"position":[-9805.367,6740.926],"color":{"red":0.01749003,"green":0.673228,"blue":0.23704791},"intensity":0.7},{"position":[-1972.7612,-5972.4976],"color":{"red":0.2694589,"green":0.84085727,"blue":0.5815431},"intensity":0.7},{"position":[6417.26,5412.5645],"color":{"red":0.18476033,"green":0.5054921,"blue":0.9252529},"intensity":0.7},{"position":[-9583.039,2301.2236],"color":{"red":0.061366916,"green":0.0647465,"blue":0.27215314},"intensity":0.7},{"position":[2662.125,-2669.897],"color":{"red":0.8700397,"green":0.024293542,"blue":0.8650756},"intensity":0.7},{"position":[2085.2305,6698.5312],"color":{"red":0.89847887,"green":0.36647773,"blue":0.2841462},"intensity":0.7},{"position":[836.92773,3714.5684],"color":{"red":0.5037364,"green":0.7038988,"blue":0.73603714},"intensity":0.7},{"position":[-1345.7295,-2003.9365],"color":{"red":0.23544288,"green":0.115083694,"blue":0.93142104},"intensity":0.7},{"position":[9913.207,-7075.906],"color":{"red":0.7619107,"green":0.7134156,"blue":0.10360491},"intensity":0.7},{"position":[-206.83789,-1280.7393],"color":{"red":0.67701375,"green":0.5649173,"blue":0.40060782},"intensity":0.7},{"position":[644.1875,-2277.024],"color":{"red":0.17079258,"green":0.28432453,"blue":0.46500647},"intensity":0.7},{"position":[3509.4287,337.2334],"color":{"red":0.564924,"green":0.58241284,"blue":0.522745},"intensity":0.7},{"position":[-3319.2944,-2946.0552],"color":{"red":0.78801274,"green":0.5059633,"blue":0.34485602},"intensity":0.7},{"position":[8894.145,-2044.4321],"color":{"red":0.64574265,"green":0.70924413,"blue":0.3236978},"intensity":0.7},{"position":[3185.2197,-5781.0117],"color":{"red":0.6573709,"green":0.96167994,"blue":0.5868435},"intensity":0.7},{"position":[-4204.171,-9236.943],"color":{"red":0.29469836,"green":0.23994482,"blue":0.7269796},"intensity":0.7},{"position":[9465.094,1215.0547],"color":{"red":0.90059114,"green":0.4972893,"blue":0.5212126},"intensity":0.7},{"position":[3396.7354,-8165.7886],"color":{"red":0.69873154,"green":0.26451337,"blue":0.9823307},"intensity":0.7},{"position":[1060.0713,-9228.704],"color":{"red":0.31998873,"green":0.08801091,"blue":0.7156583},"intensity":0.7},{"position":[-2006.5474,-4694.8457],"color":{"red":0.76532483,"green":0.6405914,"blue":0.8367493},"intensity":0.7},{"position":[1135.0469,4982.217],"color":{"red":0.39990056,"green":0.210482,"blue":0.4956609},"intensity":0.7},{"position":[-9429.836,-823.97266],"color":{"red":0.095924616,"green":0.5004697,"blue":0.28325498},"intensity":0.7},{"position":[-6437.33,-7019.6484],"color":{"red":0.24223793,"green":0.3976102,"blue":0.734391},"intensity":0.7},{"position":[2623.2744,-2731.1587],"color":{"red":0.995963,"green":0.12893307,"blue":0.83758044},"intensity":0.7},{"position":[-7204.0557,2455.1104],"color":{"red":0.6893954,"green":0.80044365,"blue":0.08033371},"intensity":0.7},{"position":[-3380.5776,8317.387],"color":{"red":0.48160005,"green":0.06864798,"blue":0.09513557},"intensity":0.7},{"position":[8577.463,-2465.7798],"color":{"red":0.2207197,"green":0.77492845,"blue":0.39999294},"intensity":0.7},{"position":[2072.6318,-5634.601],"color":{"red":0.93734884,"green":0.25542676,"blue":0.10693383},"intensity":0.7},{"position":[-8159.3105,-4206.19],"color":{"red":0.23854172,"green":0.23288953,"blue":0.86278987},"intensity":0.7},{"position":[-8159.127,-8619.628],"color":{"red":0.11891055,"green":0.73859227,"blue":0.18403101},"intensity":0.7},{"position":[328.3047,-295.6631],"color":{"red":0.4961381,"green":0.0953393,"blue":0.3656037},"intensity":0.7},{"position":[6625.3477,-9069.505],"color":{"red":0.8422487,"green":0.30109656,"blue":0.24498558},"intensity":0.7},{"position":[2707.753,-9081.373],"color":{"red":0.18976343,"green":0.37640464,"blue":0.22190392},"intensity":0.7},{"position":[2007.8711,-2287.4214],"color":{"red":0.7448015,"green":0.8570267,"blue":0.6645138},"intensity":0.7},{"position":[437.4912,4844.041],"color":{"red":0.12730968,"green":0.122620106,"blue":0.99400866},"intensity":0.7},{"position":[9619.637,8124.7637],"color":{"red":0.27645242,"green":0.5525718,"blue":0.2234528},"intensity":0.7},{"position":[9487.914,742.99316],"color":{"red":0.79177904,"green":0.58110917,"blue":0.5507977},"intensity":0.7},{"position":[-6056.259,7035.2715],"color":{"red":0.6219791,"green":0.11875999,"blue":0.72294486},"intensity":0.7},{"position":[843.99023,-4640.541],"color":{"red":0.9540756,"green":0.7755115,"blue":0.26117122},"intensity":0.7},{"position":[-8640.942,-983.4287],"color":{"red":0.42167926,"green":0.8922535,"blue":0.18238401},"intensity":0.7},{"position":[-4665.935,5072.63],"color":{"red":0.42956185,"green":0.09954965,"blue":0.7770318},"intensity":0.7},{"position":[1167.1064,-8385.439],"color":{"red":0.49452806,"green":0.62631834,"blue":0.8212807},"intensity":0.7},{"position":[5432.8154,6325.6455],"color":{"red":0.61896706,"green":0.8104584,"blue":0.38080359},"intensity":0.7},{"position":[7252.8145,-7339.451],"color":{"red":0.9572511,"green":0.073262215,"blue":0.32742333},"intensity":0.7},{"position":[-7473.631,1426.8896],"color":{"red":0.292858,"green":0.74520016,"blue":0.7799523},"intensity":0.7},{"position":[3907.6494,-3740.0938],"color":{"red":0.538296,"green":0.60226023,"blue":0.23782277},"intensity":0.7},{"position":[-9298.354,9218.305],"color":{"red":0.79130125,"green":0.59958124,"blue":0.15865266},"intensity":0.7},{"position":[-2210.815,-9729.836],"color":{"red":0.49616778,"green":0.12368047,"blue":0.14610147},"intensity":0.7},{"position":[-7053.99,6247.1934],"color":{"red":0.18156242,"green":0.9737426,"blue":0.14859354},"intensity":0.7},{"position":[9413.914,3249.254],"color":{"red":0.20704007,"green":0.9897829,"blue":0.8698801},"intensity":0.7},{"position":[-6891.1577,4713.6807],"color":{"red":0.7455832,"green":0.30147552,"blue":0.3840537},"intensity":0.7},{"position":[2599.8828,9245.83],"color":{"red":0.100803375,"green":0.5677663,"blue":0.90018594},"intensity":0.7},{"position":[3940.6445,1221.4854],"color":{"red":0.44776428,"green":0.6477983,"blue":0.28962016},"intensity":0.7},{"position":[4746.342,7161.5273],"color":{"red":0.8026222,"green":0.9765371,"blue":0.8304603},"intensity":0.7},{"position":[-8614.602,-4752.2163],"color":{"red":0.45043373,"green":0.4204631,"blue":0.6892072},"intensity":0.7},{"position":[-7563.8247,-7195.6206],"color":{"red":0.95561767,"green":0.9709008,"blue":0.9857234},"intensity":0.7},{"position":[-8575.565,312.9629],"color":{"red":0.34524417,"green":0.38277793,"blue":0.7931894},"intensity":0.7},{"position":[-9465.974,7049.9746],"color":{"red":0.8906504,"green":0.8512697,"blue":0.12099528},"intensity":0.7},{"position":[-827.1885,-6085.124],"color":{"red":0.4551667,"green":0.8541057,"blue":0.536482},"intensity":0.7},{"position":[-3724.6895,-7256.6104],"color":{"red":0.92518425,"green":0.29043627,"blue":0.53878045},"intensity":0.7},{"position":[-43.592773,276.96387],"color":{"red":0.28025877,"green":0.08909631,"blue":0.18087018},"intensity":0.7},{"position":[9679.27,7219.162],"color":{"red":0.20833063,"green":0.60003316,"blue":0.43297017},"intensity":0.7},{"position":[-1190.8271,2931.4424],"color":{"red":0.65994096,"green":0.54160225,"blue":0.51782405},"intensity":0.7},{"position":[8662.096,-242.87207],"color":{"red":0.00036263466,"green":0.8093462,"blue":0.49876344},"intensity":0.7},{"position":[-8121.09,4334.962],"color":{"red":0.26793027,"green":0.08695054,"blue":0.5259042},"intensity":0.7},{"position":[7818.0645,986.8623],"color":{"red":0.58634555,"green":0.033715844,"blue":0.5814637},"intensity":0.7},{"position":[-5103.178,7219.508],"color":{"red":0.779454,"green":0.9084493,"blue":0.79103017},"intensity":0.7},{"position":[3301.0098,-6298.5947],"color":{"red":0.6119728,"green":0.19383943,"blue":0.13421082},"intensity":0.7},{"position":[-4031.546,-7654.414],"color":{"red":0.6112225,"green":0.06710124,"blue":0.4731363},"intensity":0.7},{"position":[6474.6055,262.98535],"color":{"red":0.69818234,"green":0.4860909,"blue":0.14232099},"intensity":0.7},{"position":[-3073.2656,-4167.962],"color":{"red":0.017632604,"green":0.26011014,"blue":0.12530863},"intensity":0.7},{"position":[-8520.604,-2040.8223],"color":{"red":0.1784563,"green":0.37636995,"blue":0.9741957},"intensity":0.7},{"position":[-9070.766,6808.168],"color":{"red":0.03334546,"green":0.085084915,"blue":0.7597661},"intensity":0.7},{"position":[-9357.617,-4460.299],"color":{"red":0.85585225,"green":0.0917052,"blue":0.9082564},"intensity":0.7},{"position":[6998.301,-9398.36],"color":{"red":0.7400733,"green":0.29046226,"blue":0.28390074},"intensity":0.7},{"position":[-2965.3096,-6136.2314],"color":{"red":0.8064318,"green":0.25989068,"blue":0.24358153},"intensity":0.7},{"position":[-4578.9575,-1694.7295],"color":{"red":0.6159736,"green":0.09946847,"blue":0.08064592},"intensity":0.7},{"position":[-1404.4355,-4021.475],"color":{"red":0.53468263,"green":0.29800677,"blue":0.15511608},"intensity":0.7},{"position":[-550.07715,-3249.8647],"color":{"red":0.66858315,"green":0.031973004,"blue":0.93957376},"intensity":0.7},{"position":[-3914.4038,-1355.3359],"color":{"red":0.44928634,"green":0.5855006,"blue":0.27956295},"intensity":0.7},{"position":[-5032.1484,4830.8154],"color":{"red":0.9901085,"green":0.5015913,"blue":0.46032083},"intensity":0.7},{"position":[4770.7627,7883.168],"color":{"red":0.30905902,"green":0.8217932,"blue":0.8863741},"intensity":0.7},{"position":[-2557.79,4415.412],"color":{"red":0.519521,"green":0.9092666,"blue":0.41179347},"intensity":0.7},{"position":[-1685.3662,6773.5977],"color":{"red":0.8825859,"green":0.79454815,"blue":0.41637886},"intensity":0.7},{"position":[3666.213,7898.033],"color":{"red":0.7295797,"green":0.439175,"blue":0.05068946},"intensity":0.7},{"position":[-2764.6685,-9534.376],"color":{"red":0.59869933,"green":0.24553335,"blue":0.31040597},"intensity":0.7},{"position":[-2742.0952,-5738.368],"color":{"red":0.81497645,"green":0.48155308,"blue":0.3650123},"intensity":0.7},{"position":[-6672.6685,6341.617],"color":{"red":0.83000576,"green":0.771237,"blue":0.48674512},"intensity":0.7},{"position":[2031.7627,-1014.00586],"color":{"red":0.031029701,"green":0.15574515,"blue":0.69569707},"intensity":0.7},{"position":[9992.637,-6837.8735],"color":{"red":0.7022648,"green":0.19246578,"blue":0.9611443},"intensity":0.7}],"camera":{"position":[0.0,0.0],"zoom":1.0}}
+{
+  "vehicles": [
+    {
+      "vehicle_type": "ThreeA",
+      "position": [
+        -200.0,
+        -1000.0
+      ],
+      "orientation": 0.0,
+      "velocity": 0.0
+    },
+    {
+      "vehicle_type": "ThreeB",
+      "position": [
+        200.0,
+        -1000.0
+      ],
+      "orientation": 0.0,
+      "velocity": 0.0
+    }
+  ],
+  "lights": [
+    {
+      "position": [
+        0.0,
+        0.0
+      ],
+      "color": {
+        "red": 0.0,
+        "green": 0.0,
+        "blue": 1.0
+      },
+      "intensity": 0.7
+    },
+    {
+      "position": [
+        0.0,
+        300.0
+      ],
+      "color": {
+        "red": 0.0,
+        "green": 0.0,
+        "blue": 1.0
+      },
+      "intensity": 0.7
+    },
+    {
+      "position": [
+        300.0,
+        0.0
+      ],
+      "color": {
+        "red": 0.0,
+        "green": 1.0,
+        "blue": 0.0
+      },
+      "intensity": 0.7
+    },
+    {
+      "position": [
+        300.0,
+        300.0
+      ],
+      "color": {
+        "red": 0.0,
+        "green": 1.0,
+        "blue": 0.0
+      },
+      "intensity": 0.7
+    },
+    {
+      "position": [
+        -300.0,
+        0.0
+      ],
+      "color": {
+        "red": 1.0,
+        "green": 0.0,
+        "blue": 0.0
+      },
+      "intensity": 0.7
+    },
+    {
+      "position": [
+        -300.0,
+        300.0
+      ],
+      "color": {
+        "red": 1.0,
+        "green": 0.0,
+        "blue": 0.0
+      },
+      "intensity": 0.7
+    }
+  ],
+  "camera": {
+    "position": [
+      0.0,
+      -400.0
+    ],
+    "zoom": 0.3
+  }
+}

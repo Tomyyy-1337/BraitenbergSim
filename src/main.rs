@@ -4,37 +4,13 @@ mod camera;
 mod scene;
 
 use nannou_egui::{self, egui::{self, Checkbox}, Egui};
-use nannou::{color::srgb, event::{MouseScrollDelta, TouchPhase, Update}, glam::Vec2, rand::random_range, state::mouse, App, Frame};
-use braitenberg_vehicle::{Vehicle, VehicleType};
+use nannou::{color::srgb, event::{MouseScrollDelta, TouchPhase, Update}, glam::Vec2, rand::random_range, App, Frame};
+use braitenberg_vehicle::Vehicle;
 use camera::Camera;
 use light::Light;
 use scene::{Scene, Scenes};
 
 fn main() {
-    let mut lights = Vec::new();
-    for _ in 0..100 {
-        let color = srgb(random_range(0.0, 1.0), random_range(0.0, 1.0), random_range(0.0, 1.0));
-        let x = random_range(-10000.0, 10000.0);
-        let y = random_range(-10000.0, 10000.0);
-        let light = Light::new(Vec2::new(x, y), color, 0.7);
-        lights.push(light);
-    } 
-    let scene = Scene {
-        vehicles: vec![
-            Vehicle::new(VehicleType::TwoA, Vec2::new(-600.0, 0.0)),
-            Vehicle::new(VehicleType::TwoB, Vec2::new(-200.0, 0.0)),
-            Vehicle::new(VehicleType::ThreeA, Vec2::new(200.0, 0.0)),
-            Vehicle::new(VehicleType::ThreeB, Vec2::new(600.0, 0.0)),
-        ],
-        lights,
-        camera: Camera::new(),
-    };
-    // write to file
-    let path = "scenes/scene6.json";
-    let json = serde_json::to_string(&scene).unwrap();
-    std::fs::write(path, json).unwrap();
-
-
     nannou::app(Model::new).update(Model::update).run();
 }
 
@@ -50,7 +26,7 @@ struct Model {
     follow_vehicle: bool,
     follow_vehicle_indx: usize,
     mouse_light: bool,
-    mouse_light_active: bool,
+    paused: bool,
 }
 
 impl Model {
@@ -78,45 +54,47 @@ impl Model {
             follow_vehicle: false,
             follow_vehicle_indx: 0,
             mouse_light: false,
-            mouse_light_active: false,
+            paused: false,
         };
         model.load_from_file(Scenes::Scene1);
         model
     }
 
     fn update(app: &App, model: &mut Self, update: Update) {
-        model.camera.update_pos(&app.mouse);
+        if model.follow_vehicle {
+            model.camera.position = model.vehicles[model.follow_vehicle_indx].position;
+        } else {
+            model.camera.update_pos(&app.mouse);
+        }
         model.update_scene();
-        
-        
+        model.update_mouse_light(app);
+        model.update_gui(update);
+
+        if model.paused {
+            return;
+        }
+    
         for _ in 0..model.simulation_speed {
+            let lights = if model.mouse_light { &model.lights } else { &model.lights[1..] };
             for vehicle in &mut model.vehicles {
-                vehicle.update(&model.lights, update.since_last.as_secs_f32());
+                vehicle.update(lights, update.since_last.as_secs_f32());
             }
-            
             Model::replace_lights_on_collision(model);
         }
         
-        model.handle_mouse_light(app);
         
-        if model.follow_vehicle {
-            let vehicle = &model.vehicles[model.follow_vehicle_indx];
-            model.camera.position = vehicle.position;
-        }
-
-        model.update_gui(update);
     }
 
     fn view(app: &App, model: &Self, frame: Frame) {
         let draw = app.draw();
         draw.background().color(nannou::color::BLACK);
 
-        for light in &model.lights {
+        for light in model.get_lights() {
             light.draw(&draw, &model.camera);
         }
 
         for vehicle in &model.vehicles {
-            vehicle.draw(&draw, &model.camera, &model.lights);
+            vehicle.draw(&draw, &model.camera, model.get_lights());
         }
 
         draw.to_frame(app, &frame).unwrap();
@@ -127,7 +105,7 @@ impl Model {
         if self.current_scene != self.previous_scene {
             self.load_from_file(self.current_scene);
             self.previous_scene = self.current_scene;
-            self.mouse_light_active = false;
+            self.follow_vehicle_indx = 0;
         }
     }
 
@@ -146,6 +124,8 @@ impl Model {
             nannou::event::Key::Key4 => model.current_scene = Scenes::Scene4,
             nannou::event::Key::Key5 => model.current_scene = Scenes::Scene5,
             nannou::event::Key::Key6 => model.current_scene = Scenes::Scene6,
+            nannou::event::Key::Key7 => model.current_scene = Scenes::Scene7,
+            nannou::event::Key::Space => model.paused = !model.paused,
             _ => {}
         }
     }
@@ -153,7 +133,9 @@ impl Model {
     fn load_from_file(&mut self, scene: Scenes) {
         let scene = Scene::load_scene(scene);
         self.vehicles = scene.vehicles;
-        self.lights = scene.lights;
+        let mouse_light = Light::new(Vec2::ZERO, srgb(1.0, 1.0, 1.0), 0.7);
+        self.lights = vec![mouse_light];
+        self.lights.extend(scene.lights);
         self.camera = scene.camera;
     }
 
@@ -166,36 +148,41 @@ impl Model {
             nannou_egui::egui::ComboBox::from_label("")
                 .selected_text(self.current_scene.to_str())
                 .show_ui(ui, |ui|{
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene1, Scenes::Scene1.to_str());
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene2, Scenes::Scene2.to_str());
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene3, Scenes::Scene3.to_str());
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene4, Scenes::Scene4.to_str());
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene5, Scenes::Scene5.to_str());
-                    ui.selectable_value(&mut self.current_scene, Scenes::Scene6, Scenes::Scene6.to_str());
+                    for scene in Scenes::Scene1 as u8..=Scenes::Scene7 as u8 {
+                        let scene = unsafe { std::mem::transmute(scene) };
+                        ui.selectable_value(&mut self.current_scene, scene, scene.to_str());
+                    }
                 });
             if ui.add(egui::Button::new("Reset Scene")).clicked() {
                 let scene = Scene::load_scene(self.current_scene);
                 self.vehicles = scene.vehicles;
-                self.lights = scene.lights;
-                self.camera = scene.camera;
-                self.mouse_light_active = false;
+                let mouse_light = Light::new(Vec2::ZERO, srgb(1.0, 1.0, 1.0), 0.7);
+                self.lights = vec![mouse_light];
+                self.lights.extend(scene.lights);
             }
             ui.add(Checkbox::new(&mut self.show_controls, "Show Controls"));
             ui.add(Checkbox::new(&mut self.follow_vehicle, "Follow Vehicle"));
-            if self.follow_vehicle {
-                ui.add(egui::Slider::new(&mut self.follow_vehicle_indx, 0..=(self.vehicles.len()- 1)).text("Vehicle Index"));
+            if self.follow_vehicle && self.vehicles.len() > 1 {
+                ui.label("Select Vehicle:");
+                ui.horizontal(|ui| {
+                    for i in 0..self.vehicles.len() {
+                        if ui.add(egui::Button::new(format!("{i}"))).clicked() {
+                            self.follow_vehicle_indx = i;
+                        }                    
+                    }
+                });
             }
             ui.add(Checkbox::new(&mut self.mouse_light, "Show a light where the mouse is"));
-            ui.add(egui::Slider::new(&mut self.simulation_speed, 1..=100).text("Simulation Speed"));
+            ui.add(egui::Slider::new(&mut self.simulation_speed, 1..=100).logarithmic(true).text("Simulation Speed"));
+            ui.add(Checkbox::new(&mut self.paused, "Pause Simulation"));
             ui.label(format!("Camera Position: ({:.0}, {:.0})", self.camera.position.x, self.camera.position.y));
             ui.label(format!("Camera Zoom: {}", self.camera.zoom));            
         });
 
         if self.show_controls {
             egui::Window::new("Controlls").show(&ctx, |ui| {
-                ui.label("- Right click and drag to move the camera.");
+                ui.label("- Right click and hold to move the camera.");
                 ui.label("- Scroll to zoom in and out.");
-                ui.label("- 1-4 to switch between scenes.");
                 if ui.button("Close").clicked() {
                     self.show_controls = false;
                 }
@@ -205,34 +192,34 @@ impl Model {
     }
 
     fn replace_lights_on_collision(model: &mut Model) {
-        model.lights.iter_mut()
-            .filter(|light| {
-                model.vehicles.iter().any(|vehicle| {
+        model.lights.iter_mut().skip(model.mouse_light as usize)
+            .filter_map(|light| {
+                let v = model.vehicles.iter().find(|vehicle| {
                     let distance = light.position.distance_squared(vehicle.position);
-                    distance < 20000.0
-                }) 
+                    distance < 20000.0 
+                });
+                v.map(|vehicle| (light, vehicle))
             })
-            .for_each(|light| {
+            .for_each(|(light, vehicle)| {
                 light.position = nannou::geom::vec2(
-                    random_range(-1000.0, 1000.0),
-                    random_range(-1000.0, 1000.0),
+                    vehicle.position.x  + random_range(-1000.0, 1000.0),
+                    vehicle.position.y + random_range(-1000.0, 1000.0),
                 );
             })
     }
-    fn handle_mouse_light(&mut self, app: &App) {
-        if self.mouse_light && !self.mouse_light_active {
-            let light = Light::new(Vec2::ZERO, srgb(1.0, 1.0, 1.0), 1.0);
-            self.lights.push(light);
-            self.mouse_light_active = true;
-        } else if !self.mouse_light && self.mouse_light_active {
-            self.lights.pop();
-            self.mouse_light_active = false;
+
+    fn get_lights(&self) -> &[Light] {
+        if self.mouse_light {
+            &self.lights
+        } else{
+            &self.lights[1..]
         }
-        if self.mouse_light_active {
-            let mouse_pos = nannou::geom::vec2(app.mouse.x, app.mouse.y);
-            let mouse_pos_base_coords = mouse_pos / self.camera.zoom + self.camera.position;
-            self.lights.last_mut().unwrap().position = mouse_pos_base_coords;
-        }
+    }
+
+    fn update_mouse_light(&mut self, app: &App) {
+        let mouse_pos = nannou::geom::vec2(app.mouse.x, app.mouse.y);
+        let mouse_pos_base_coords = mouse_pos / self.camera.zoom + self.camera.position;
+        self.lights[0].position = mouse_pos_base_coords;
     }
 }
 

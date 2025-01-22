@@ -1,21 +1,12 @@
 {
   "vehicles": [
     {
-      "vehicle_type": "TwoA",
+      "vehicle_type": "ThreeA",
       "position": [
-        -200.0,
+        0.0,
         -1000.0
       ],
-      "orientation": 0.0,
-      "velocity": 0.0
-    },
-    {
-      "vehicle_type": "TwoB",
-      "position": [
-        200.0,
-        -1000.0
-      ],
-      "orientation": 0.0,
+      "orientation": 0.1,
       "velocity": 0.0
     }
   ],
@@ -24,18 +15,6 @@
       "position": [
         0.0,
         0.0
-      ],
-      "color": {
-        "red": 1.0,
-        "green": 1.0,
-        "blue": 1.0
-      },
-      "intensity": 0.7
-    },
-    {
-      "position": [
-        0.0,
-        300.0
       ],
       "color": {
         "red": 1.0,

@@ -1,4 +1,3 @@
-use geom::Tri;
 use nannou::prelude::*;
 use serde::{Deserialize, Serialize};
 

@@ -35,7 +35,7 @@ impl Vehicle {
         }
     }
 
-    pub fn update(&mut self, lights: &Vec<Light>, delta: f32) {
+    pub fn update(&mut self, lights: &[Light], delta: f32) {
         let left_sensor_value = self.read_sensor(Vec2::from(LEFT_FRONT), lights);
         let right_sensor_value = self.read_sensor(Vec2::from(RIGHT_FRONT), lights);
         match self.vehicle_type {
@@ -56,13 +56,13 @@ impl Vehicle {
             ),
             VehicleType::ThreeB => self.two_sensor_vehicle(
                 delta,
-            (1.0 - right_sensor_value).max(0.0),
-            (1.0 - left_sensor_value).max(0.0)
+                (1.0 - right_sensor_value).max(0.0),
+                (1.0 - left_sensor_value).max(0.0)
             ),
         }
     }
 
-    pub fn draw(&self, draw: &nannou::draw::Draw, camera: &Camera, lights: &Vec<Light>) {
+    pub fn draw(&self, draw: &nannou::draw::Draw, camera: &Camera, lights: &[Light]) {
         let color = match self.vehicle_type {
             VehicleType::TwoA => srgb(1.0, 1.0, 0.0),
             VehicleType::TwoB => srgb(0.0, 1.0, 1.0),
@@ -114,7 +114,7 @@ impl Vehicle {
             .rotate(self.orientation);
     }
 
-    pub fn read_sensor(&self, pos: Vec2, lights: &Vec<Light>) -> f32 {
+    pub fn read_sensor(&self, pos: Vec2, lights: &[Light]) -> f32 {
         let pos = pos.rotate(self.orientation) + self.position;
         
         let val: f32 = lights.iter()
@@ -161,7 +161,7 @@ const LEFT_FRONT: (f32, f32) = (-VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
 const RIGHT_FRONT: (f32, f32) = (VEHICLE_WIDTH / 2.0, VEHICLE_LENGTH / 2.0);
 struct VehicleA; 
 impl VehicleA {
-    pub fn draw(vehicle: &Vehicle, draw: &draw::Draw, camera: &Camera, lights: &Vec<Light>, color: Srgb) {
+    pub fn draw(vehicle: &Vehicle, draw: &draw::Draw, camera: &Camera, lights: &[Light], color: Srgb) {
         let sensor_size = 10.0;
         
         let front_left = vehicle.draw_rect(srgb(1.0, 0.0, 0.0), Vec2::new((-VEHICLE_WIDTH + sensor_size) / 2.0, (VEHICLE_LENGTH + sensor_size) / 2.0), draw, camera, Vec2::new(SENSOR_SIZE, SENSOR_SIZE));
@@ -191,7 +191,7 @@ impl VehicleA {
 
 struct VehicleB;
 impl VehicleB {
-    pub fn draw(vehicle: &Vehicle, draw: &draw::Draw, camera: &Camera, lights: &Vec<Light>, color: Srgb) {
+    pub fn draw(vehicle: &Vehicle, draw: &draw::Draw, camera: &Camera, lights: &[Light], color: Srgb) {
         let sensor_size = 10.0;
         
         let front_left = vehicle.draw_rect(srgb(1.0, 0.0, 0.0), Vec2::new((-VEHICLE_WIDTH + sensor_size) / 2.0, (VEHICLE_LENGTH + sensor_size) / 2.0), draw, camera, Vec2::new(SENSOR_SIZE, SENSOR_SIZE));

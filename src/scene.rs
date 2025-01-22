@@ -1,5 +1,4 @@
 use std::fs::File;
-
 use serde::{Deserialize, Serialize};
 
 use crate::{braitenberg_vehicle::Vehicle, camera::Camera, light::Light};
@@ -12,6 +11,7 @@ pub enum Scenes {
     Scene4,
     Scene5,
     Scene6,
+    Scene7,
 }
 
 impl Scenes {
@@ -23,6 +23,7 @@ impl Scenes {
             Scenes::Scene4 => "Scene 4",
             Scenes::Scene5 => "Scene 5",
             Scenes::Scene6 => "Scene 6",
+            Scenes::Scene7 => "Scene 7",
         }
     }
 }
@@ -43,6 +44,7 @@ impl Scene {
             Scenes::Scene4 => "scenes/scene4.json",
             Scenes::Scene5 => "scenes/scene5.json",
             Scenes::Scene6 => "scenes/scene6.json",
+            Scenes::Scene7 => "scenes/scene7.json",
         };
 
         let file = File::open(file_path).unwrap();
