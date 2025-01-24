@@ -29,6 +29,7 @@ impl Camera {
 
     pub fn update_zoom(&mut self, delta: f32) {
         self.zoom *= 1.0 + delta * 0.2;
+        self.zoom = self.zoom.max(0.02);
     }
 }
 

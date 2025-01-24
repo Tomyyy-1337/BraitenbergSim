@@ -133,11 +133,9 @@ impl Vehicle {
     // general update function for vehicles with two sensors
     fn two_sensor_vehicle(&mut self, delta: f32, left_sensor_value: f32, right_sensor_value: f32) {        
         let new_vel = (left_sensor_value + right_sensor_value) * 1600.0;
-        let new_vel_min = new_vel.min(600.0);
+        self.velocity = new_vel.min(600.0);
 
-        self.velocity = new_vel_min;
-
-        let factor = (new_vel_min / new_vel).min(1.0);
+        let factor = (self.velocity / new_vel).min(1.0);
 
         let rotation = self.calc_rotation(left_sensor_value, right_sensor_value, factor);
         self.orientation += rotation * delta;

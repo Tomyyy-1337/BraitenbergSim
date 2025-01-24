@@ -36,9 +36,11 @@ pub fn update_gui(model: &mut Model, update: Update) {
                 }
             });
         }
-        ui.add(Checkbox::new(&mut model.mouse_light, "Show a light where the mouse is"));
-        ui.add(egui::Slider::new(&mut model.simulation_speed, 1..=100).logarithmic(true).text("Simulation Speed"));
+        ui.add(Checkbox::new(&mut model.mouse_light, "Show a light at Mouse Position"));
+        ui.label("Simulation Speed:");
+        ui.add(egui::Slider::new(&mut model.simulation_speed, 1..=100).logarithmic(true));
         ui.add(Checkbox::new(&mut model.paused, "Pause Simulation"));
+        ui.add(Checkbox::new(&mut model.draw_background, "Show background grid"));
         ui.label(format!("Camera Position: ({:.0}, {:.0})", model.camera.position.x, model.camera.position.y));
         ui.label(format!("Camera Zoom: {}", model.camera.zoom));            
     });
