@@ -13,7 +13,7 @@ pub fn handle_mouse_wheel(_app: &App, model: &mut Model, delta: MouseScrollDelta
     }
 }
 
-pub fn handle_key_released(_app: &App, model: &mut Model, key: nannou::event::Key) {
+pub fn handle_key_released(app: &App, model: &mut Model, key: nannou::event::Key) {
     match key {
         nannou::event::Key::Key1 => model.current_scene = Scenes::Scene1,
         nannou::event::Key::Key2 => model.current_scene = Scenes::Scene2,
@@ -23,6 +23,10 @@ pub fn handle_key_released(_app: &App, model: &mut Model, key: nannou::event::Ke
         nannou::event::Key::Key6 => model.current_scene = Scenes::Scene6,
         nannou::event::Key::Key7 => model.current_scene = Scenes::Scene7,
         nannou::event::Key::Space => model.paused = !model.paused,
+        nannou::event::Key::F11 => {
+            let window = app.main_window();
+            window.set_fullscreen(!window.is_fullscreen());
+        }
         _ => {}
     }
 }

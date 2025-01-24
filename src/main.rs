@@ -37,7 +37,7 @@ struct Model {
 impl Model {
     fn new(app: &nannou::App) -> Self {
         let window_id = app.new_window()
-            .size(800 as u32, 600 as u32)
+            .size(1200 as u32, 800 as u32)
             .view(Model::view)
             .raw_event(event_handlers::raw_window_event)
             .mouse_wheel(event_handlers::handle_mouse_wheel)
